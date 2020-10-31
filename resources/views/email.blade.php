@@ -19,9 +19,6 @@
 	</ul>
 
 	<p>Below are some useful links from justlaravel.com :</p>
-	<ul style="list-style-type: disc">
-		<li><a href="http://justlaravel.com/posts/">All Posts</a></li>
-		<li><a href="http://justlaravel.com/demos/">All Demos</a></li>
-	</ul>
+	
 </body>
 </html>
