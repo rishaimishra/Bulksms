@@ -29,6 +29,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.import.form.bulkmail')}}">
+                    <span data-feather="shopping-cart"></span>
+                    Send Bulk email
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="users"></span>
                     Customers

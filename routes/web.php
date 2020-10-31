@@ -49,10 +49,17 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
 
 
     Route::get('/users/send/email', [App\Http\Controllers\MailController::class, 'index'])->name('import.form.mail');
+    Route::get('/users/send/email/bulk', [App\Http\Controllers\MailController::class, 'viewBulkEmail'])->name('import.form.bulkmail');
     Route::get('/users/getemail/{id}', [App\Http\Controllers\MailController::class, 'getEmail'])->name('getemail');
 
 
     Route::any('users/sendmail', [App\Http\Controllers\MailController::class, 'sendMail'])->name('import.mail');
+
+    Route::any('users/sendbulkmail', [App\Http\Controllers\MailController::class, 'sendBulkMail'])->name('import.bulkmail');
+
+    Route::get('users/template/{id}', function($id){
+        return App\Models\Template::find($id);
+    })->name('import.template');
 
 
 });

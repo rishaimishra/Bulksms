@@ -16,7 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">    
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -125,8 +125,9 @@
     </div>
 </body>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script type="text/javascript">
 
 
 $(document).on('click', '#editButton' , function(){
@@ -232,10 +233,60 @@ function modalToggle() {
         }
        });
 
+    }
+
+    $('#user_type_upload_file').hide();
+    $('#user_type_contacts').hide();
+    function handleOnChangeUserType(option)
+    {
+        if(option){
+            if(option == 'upload_file'){
+                $('#user_type_upload_file').show();
+                $('#user_type_contacts').hide();
+            }
+            if(option == 'contacts'){
+                $('#user_type_contacts').show();
+                $('#user_type_upload_file').hide();
+            }
         }
+    }
 
+    $('#schedule_date_time').hide();
+    function handleOnChangeSchedule(option)
+    {
+        if(option){
+            if(option == 'mark_schedule'){
+                $('#schedule_date_time').show();
+            } else {
+                $('#schedule_date_time').hide();
+            }
+        }
+    }
 
+    $('#template_message').hide();
+    function handleOnChangeMessage(option)
+    {
+        if(option){
+            if(option == 'template_message'){
+                $('#template_message').show();
+            } else {
+                $('#template_message').hide();
+            }
+        }
+    }
 
+    function handleOnChangeTemplate(template)
+    {
+        if(template){
+            $.ajax({
+                type: 'GET',
+                url: '{{url('admin/users/template')}}/' +template,
+                success: function(response){
+                    $('#bulk_email_custom_message').val(response.text);
+                }
+            });
+        }        
+    }
 
 </script>
 </html>
