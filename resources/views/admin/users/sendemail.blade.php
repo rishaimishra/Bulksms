@@ -34,17 +34,17 @@
 
                 <div class="form-group">
                     <label class="control-label">Subject</label>
-                    <input type="text" class="form-control" id="email_subject" name="email_subject" />
+                    <input type="text" class="form-control" id="message_subject" name="message_subject" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Select an image</label>
-                    <input class="form-control" type="file" id="email_file" name="email_file" />
+                    <input class="form-control" type="file" id="message_attachment" name="message_attachment" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Select Schedule</label>
-                    <select class="form-control" id="bulk_email_schedule" name="bulk_email_schedule" onChange="handleOnChangeSchedule(this.value)">
+                    <select class="form-control" id="message_schedule" name="message_schedule" onChange="handleOnChangeSchedule(this.value)">
                         <option value="0" disabled selected>Select</option>
                         <option value="send_now" >Select Now</option>
                         <option value="mark_schedule" >Mark A Schedule</option>
@@ -53,7 +53,7 @@
 
                 <div id="schedule_date_time" class="form-group">
                     <label class="control-label">Date &amp; Time</label>
-                    <input type="text" id="bulk_email_mark_schedule" name="bulk_email_mark_schedule" class="form-control">
+                    <input type="text" id="mark_schedule" name="mark_schedule" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                     <label class="control-label">Message</label>
-                    <textarea class="form-control" rows="8" id="bulk_email_custom_message" name="bulk_email_custom_message"></textarea>
+                    <textarea class="form-control" rows="8" id="custom_message" name="custom_message"></textarea>
                 </div>
 
                 <button class="btn btn-primary" type="submit">Submit</button>

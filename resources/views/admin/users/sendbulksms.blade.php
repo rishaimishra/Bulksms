@@ -14,7 +14,7 @@
                     </div>
                 @endif
 
-                <form action="{{route('admin.import.bulkmail')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('admin.import.sendbulk')}}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
@@ -26,21 +26,6 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Subject</label>
-                        <input type="text" class="form-control" id="message_subject" name="message_subject" />
-                    </div>
-
-                    <div id="user_type_upload_file" class="form-group">
-                        <label class="control-label">Upload File</label>
-                        <div class="upload-file">
-                            <input type="file" id="bulk_message_file" name="bulk_message_file"/>
-                            <label for="bulk_message_file">
-                                <a href="{{ asset('uploads/bulk_mail.xlsx') }}" download>Download Sample File</a>
-                            </label>
-                        </div>
-                    </div>
-
                     <div id="user_type_contacts" class="form-group">
                         <label class="control-label">Select Contacts</label>
                         <select class="form-control" name="user_type_contacts[]" multiple>
@@ -50,9 +35,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Select an image</label>
-                        <input type="file" class="form-control" id="message_attachment" name="message_attachment" />
+                    <div id="user_type_upload_file" class="form-group">
+                        <label class="control-label">Upload File</label>
+                        <div class="upload-file">
+                            <input type="file" id="bulk_message_file" name="bulk_message_file"/>
+                            <label for="bulk_message_file">
+                                <a href="{{ asset('uploads/sample_bulk.xlsx') }}" download>Download Sample File</a>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -67,6 +57,25 @@
                     <div id="schedule_date_time" class="form-group">
                         <label class="control-label">Date &amp; Time</label>
                         <input type="text" id="mark_schedule" name="mark_schedule" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Account Type</label>
+                        <select class="form-control" id="account_type" name="account_type">
+                            <option value="twilio" selected>Twilio</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Number</label>
+                        <select class="form-control" id="account_number" name="account_number">
+                            <option value="12058284240" selected>+12058284240</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Select an image</label>
+                        <input type="file" class="form-control" id="message_attachment" name="message_attachment" />
                     </div>
 
                     <div class="form-group">
@@ -89,7 +98,7 @@
 
                     <div class="form-group">
                         <label class="control-label">Message</label>
-                        <textarea class="form-control" rows="8" id="custom_message" name="custom_message"></textarea>
+                        <textarea class="form-control" rows="8" id="custom_message" name="custom_message" required></textarea>
                     </div>
 
                     <button class="btn btn-primary" type="submit">Submit</button>

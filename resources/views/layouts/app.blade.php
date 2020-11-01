@@ -282,7 +282,7 @@ function modalToggle() {
                 type: 'GET',
                 url: '{{url('admin/users/template')}}/' +template,
                 success: function(response){
-                    $('#bulk_email_custom_message').val(response.text);
+                    $('#custom_message').val(response.text);
                 }
             });
         }        

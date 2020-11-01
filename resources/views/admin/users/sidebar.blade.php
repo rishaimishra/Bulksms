@@ -16,9 +16,15 @@
                 @endcan
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.import.form')}}">
+                <a class="nav-link" href="{{route('admin.import.form')}}">
                     <span data-feather="shopping-cart"></span>
                     Send sms
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.import.form.bulksms')}}">
+                    <span data-feather="shopping-cart"></span>
+                    Send Bulk SMS
                 </a>
             </li>
 

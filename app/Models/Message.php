@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Template extends Model
+class Message extends Model
 {
     use HasFactory;
+
+    const SMS = 'SMS';
+    const EMAIL = 'EMAIL';
+
 
     /**
      * The attributes that are mass assignable.
@@ -15,8 +19,9 @@ class Template extends Model
      * @var array
     */
     protected $fillable = [
-        'title',
-        'text',
-        'media'
+        'to',
+        'from',
+        'body',
+        'type'
     ];
 }

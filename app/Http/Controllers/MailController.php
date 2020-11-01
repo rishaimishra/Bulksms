@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Exception;
 use Excel;
 use App\Models\User;
-use App\Imports\UsersEmailImport;
+use App\Models\Message;
+use App\Imports\ExcelImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -21,16 +22,19 @@ class MailController extends Controller
         }
         
         $body = array(
-            'bodyMessage' => $request->bulk_email_custom_message
+            'bodyMessage' => $request->custom_message
         );
 
         $user = User::find($request->custname);
         $data = array();
         $data['to'] = $request->custemail;
         $data['to_name'] = ucfirst($user->name);
-        $data['subject'] = $request->email_subject;
-        $data['body'] = $request->bulk_email_custom_message;
-        $data['attachment'] = $request->file('email_file');
+        $data['type'] = Message::EMAIL;
+        $data['from'] = env('MAIL_FROM_ADDRESS', 'rishimishra7872@gmail.com');
+        $data['from_name'] = env('MAIL_FROM_NAME', 'Rishav kumar');
+        $data['subject'] = $request->message_subject;
+        $data['body'] = $request->custom_message;
+        $data['attachment'] = $request->file('message_attachment');
 
         $this->sendEmail($data);
 
@@ -54,7 +58,7 @@ class MailController extends Controller
             $body = array('bodyMessage' => $data['body']);
             Mail::send('email', $body, function ($message) use ($data) {
     
-                $message->from(env('MAIL_FROM_ADDRESS', 'rishimishra7872@gmail.com'), env('MAIL_FROM_NAME', 'Rishav kumar'));
+                $message->from($data['from'], $data['from_name']);
                 $message->to($data['to'], $data['to_name']);
                 $message->priority(3);
 
@@ -103,14 +107,17 @@ class MailController extends Controller
         $success = false;
         $emails = array();
 
-        if(!$request->user_type_contacts && !$request->bulk_email_file){
+        if(!$request->user_type_contacts && !$request->bulk_message_file){
             dd("Please select user type");
         }
 
         $data = array();
-        $data['body'] = $request->bulk_email_custom_message;
-        $data['subject'] = $request->bulk_email_subject;
-        $data['attachment'] = $request->file('bulk_email_attachment');
+        $data['type'] = Message::EMAIL;
+        $data['from'] = env('MAIL_FROM_ADDRESS', 'rishimishra7872@gmail.com');
+        $data['from_name'] = env('MAIL_FROM_NAME', 'Rishav kumar');
+        $data['body'] = $request->custom_message;
+        $data['subject'] = $request->message_subject;
+        $data['attachment'] = $request->file('message_attachment');
 
         // If User selects from DB contatcs
         if($request->user_type_contacts){
@@ -119,12 +126,13 @@ class MailController extends Controller
                 $data['to'] = $user->email;
                 $data['to_name'] = ucfirst($user->name);
                 $this->sendEmail($data);
+                Message::create($data);
             }
         } 
         
         // If User uploads a Excel file
-        if($request->bulk_email_file) {
-            $user_emails = Excel::toArray(new UsersEmailImport, $request->file('bulk_email_file'));  
+        if($request->bulk_message_file) {
+            $user_emails = Excel::toArray(new ExcelImport, $request->file('bulk_message_file'));  
             array_walk_recursive($user_emails, function ($value, $key) use (&$emails){
                 $emails[] = $value;
             }, $emails);
@@ -133,6 +141,7 @@ class MailController extends Controller
                 $data['to'] = $email;
                 $data['to_name'] = 'John Doe';
                 $this->sendEmail($data);
+                Message::create($data);
             }
         }
 

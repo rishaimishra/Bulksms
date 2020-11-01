@@ -44,7 +44,9 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
 
     Route::get('/users/delete/{id}', [App\Http\Controllers\ContactController::class, 'destroying'])->name('import.delete');
     Route::post('/users/send', [App\Http\Controllers\SendController::class, 'sendsms'])->name('import.send');
+    Route::post('/users/send/bulk', [App\Http\Controllers\SendController::class, 'sendBulkSMS'])->name('import.sendbulk');
     Route::get('/users/send/sms', [App\Http\Controllers\SendController::class, 'index'])->name('import.form');
+    Route::get('/users/send/sms/bulk', [App\Http\Controllers\SendController::class, 'viewBulkSMS'])->name('import.form.bulksms');
     Route::get('/users/getnumber/{id}', [App\Http\Controllers\SendController::class, 'getNumber'])->name('import.number');
 
 

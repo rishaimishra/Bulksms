@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class UsersEmailImport implements ToModel,WithValidation
+class ExcelImport implements ToModel,WithValidation
 {
     /**
     * @param array $row
