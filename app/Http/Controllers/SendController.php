@@ -32,7 +32,7 @@ class SendController extends Controller
                            ["body" => $request->msg, "from" => "+12058284240"]
                   );
 
-        print($message->sid);
+        return back()->with('success', 'Sms has been sent successfully.');
     }
 
     public function sendMessage($twilio, $data)
@@ -40,10 +40,10 @@ class SendController extends Controller
         try {
             return $twilio->messages
                     ->create('+'.(int) $data['to'], array(
-                            "body" => $data['body'], 
+                            "body" => $data['body'],
                             "from" => '+'.(int) $data['from']
-                        )                        
-                    );    
+                        )
+                    );
         } catch(Exception $ex) {
 
             dd($ex->getMessage());
@@ -62,7 +62,7 @@ class SendController extends Controller
         }
 
         $twilio = new Client($sid, $token);
-        
+
         $data = array();
         $data['from'] = $request->account_number;
         $data['body'] = $request->custom_message;
@@ -76,8 +76,8 @@ class SendController extends Controller
                 $message = $this->sendMessage($twilio, $data);
                 Message::create($data);
             }
-        } 
-        
+        }
+
         // If User uploads a Excel file
         if($request->bulk_message_file) {
             $users = Excel::toArray(new ExcelImport, $request->file('bulk_message_file'));
@@ -110,7 +110,7 @@ class SendController extends Controller
                     ->where('guest','1')
                     ->orderBy('created_at','desc')
                     ->get();
-        
+
         $templates = DB::table('templates')->get();
 
         return view('admin.users.sendbulksms')->with(['users' => $users, 'templates' => $templates]);

@@ -7,7 +7,11 @@
     <div class="row justify-content-center">
 
         <div class="col-md-10">
-
+            @if (session('success'))
+            <div class="alert alert-primary" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
 
 
 
