@@ -17,6 +17,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -57,6 +59,11 @@
         .show#addContact .modal-content{
         opacity: 1;
         visibility: visible;
+        }
+
+        .show#addTemplate .modal-content{
+            opacity: 1;
+            visibility: visible;
         }
         </style>
 </head>
@@ -123,172 +130,182 @@
             @yield('content')
         </main>
     </div>
-</body>
 
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script type="text/javascript">
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
 
 
-$(document).on('click', '#editButton' , function(){
-    var editTableNode = $(this).parent('td').parent('tr');
-    $.fn.appendAttr = function(attrName, suffix) {
-    this.attr(attrName, function(i, val) {
-        return val + suffix;
+    $(document).on('click', '#editButton' , function(){
+        var editTableNode = $(this).parent('td').parent('tr');
+        $.fn.appendAttr = function(attrName, suffix) {
+        this.attr(attrName, function(i, val) {
+            return val + suffix;
+        });
+        return this;
+    };
+        var editNameField = editTableNode.children()[0].innerHTML;
+        var editEmailField = editTableNode.children()[1].innerHTML;
+        var editEhoneField = editTableNode.children()[2].innerHTML;
+        $('#editModal').find('#name').val(editNameField);
+        $('#editModal').find('#email').val(editEmailField);
+        $('#editModal').find('#phone').val(editEhoneField);
+        $('#editModal form').appendAttr('action', 41);
+
+        modalToggle();
+        // console.log(editNameField);
+
     });
-    return this;
-};
-    var editNameField = editTableNode.children()[0].innerHTML;
-    var editEmailField = editTableNode.children()[1].innerHTML;
-    var editEhoneField = editTableNode.children()[2].innerHTML;
-    $('#editModal').find('#name').val(editNameField);
-    $('#editModal').find('#email').val(editEmailField);
-    $('#editModal').find('#phone').val(editEhoneField);
-     $('#editModal form').appendAttr('action', 41);
-
-    modalToggle();
-    // console.log(editNameField);
-
-});
-function modalToggle() {
-	$('#editModal').toggleClass('modal-show');
-	$('.overlay-edit-modal').toggleClass('overlay-show');
-};
+    function modalToggle() {
+        $('#editModal').toggleClass('modal-show');
+        $('.overlay-edit-modal').toggleClass('overlay-show');
+    };
 
 
 
-          function deleteUser(id){
-             if(confirm('Are you sure you want to delete?')){
-                window.location.href='{{url('admin/users/delete')}}/'+id;
-             }
-          };
-
-
-
-//    $('#contactNam1').on('change',function(){
-    //$('#contactName').on('change', function() {
-        function onSelectChange(sel) {
-        console.log(sel.value);
-
-       let id = sel.value;
-
-    //       $('#numberInput').empty();
-    //    $('#numberInput').append('<option value="0" disabled selected>Processing...</option>');
-
-       $.ajax({
-        type: 'GET',
-        url: '{{url('admin/users/getnumber')}}/' +id,
-
-        success: function(response){
-            console.log('alskdf');
-           // alert(response);
-            var response = JSON.parse(response);
-            console.log(response);
-
-            $('#numberInput').empty();
-            response.forEach(element =>{
-                $('#numberInput').val(`${element['phone']}`);
-                // .append(
-                //     `
-                //     <option value="${element['id']}">${element['phone']}</option>
-                //     `
-
-                    // );
-            });
-        }
-       });
-
-        }
-
-  // });
-
-  function onSelectChangeEmail(sel) {
-        console.log(sel.value);
-
-       let id = sel.value;
-
-    //       $('#numberInput').empty();
-    //    $('#numberInput').append('<option value="0" disabled selected>Processing...</option>');
-
-       $.ajax({
-        type: 'GET',
-        url: '{{url('admin/users/getemail')}}/' +id,
-
-        success: function(response){
-            console.log('alskdf');
-           // alert(response);
-            var response = JSON.parse(response);
-            console.log(response);
-
-            $('#emailInput').empty();
-            response.forEach(element =>{
-                $('#emailInput').val(`${element['email']}`);
-                // .append(
-                //     `
-                //     <option value="${element['id']}">${element['phone']}</option>
-                //     `
-
-                    // );
-            });
-        }
-       });
-
-    }
-
-    $('#user_type_upload_file').hide();
-    $('#user_type_contacts').hide();
-    function handleOnChangeUserType(option)
-    {
-        if(option){
-            if(option == 'upload_file'){
-                $('#user_type_upload_file').show();
-                $('#user_type_contacts').hide();
-            }
-            if(option == 'contacts'){
-                $('#user_type_contacts').show();
-                $('#user_type_upload_file').hide();
-            }
-        }
-    }
-
-    $('#schedule_date_time').hide();
-    function handleOnChangeSchedule(option)
-    {
-        if(option){
-            if(option == 'mark_schedule'){
-                $('#schedule_date_time').show();
-            } else {
-                $('#schedule_date_time').hide();
-            }
-        }
-    }
-
-    $('#template_message').hide();
-    function handleOnChangeMessage(option)
-    {
-        if(option){
-            if(option == 'template_message'){
-                $('#template_message').show();
-            } else {
-                $('#template_message').hide();
-            }
-        }
-    }
-
-    function handleOnChangeTemplate(template)
-    {
-        if(template){
-            $.ajax({
-                type: 'GET',
-                url: '{{url('admin/users/template')}}/' +template,
-                success: function(response){
-                    $('#custom_message').val(response.text);
+            function deleteUser(id){
+                if(confirm('Are you sure you want to delete?')){
+                    window.location.href='{{url('admin/users/delete')}}/'+id;
                 }
-            });
-        }        
-    }
+            };
 
-</script>
+
+
+    //    $('#contactNam1').on('change',function(){
+        //$('#contactName').on('change', function() {
+            function onSelectChange(sel) {
+            console.log(sel.value);
+
+        let id = sel.value;
+
+        //       $('#numberInput').empty();
+        //    $('#numberInput').append('<option value="0" disabled selected>Processing...</option>');
+
+        $.ajax({
+            type: 'GET',
+            url: '{{url('admin/users/getnumber')}}/' +id,
+
+            success: function(response){
+                console.log('alskdf');
+            // alert(response);
+                var response = JSON.parse(response);
+                console.log(response);
+
+                $('#numberInput').empty();
+                response.forEach(element =>{
+                    $('#numberInput').val(`${element['phone']}`);
+                    // .append(
+                    //     `
+                    //     <option value="${element['id']}">${element['phone']}</option>
+                    //     `
+
+                        // );
+                });
+            }
+        });
+
+            }
+
+    // });
+
+    function onSelectChangeEmail(sel) {
+            console.log(sel.value);
+
+        let id = sel.value;
+
+        //       $('#numberInput').empty();
+        //    $('#numberInput').append('<option value="0" disabled selected>Processing...</option>');
+
+        $.ajax({
+            type: 'GET',
+            url: '{{url('admin/users/getemail')}}/' +id,
+
+            success: function(response){
+                console.log('alskdf');
+            // alert(response);
+                var response = JSON.parse(response);
+                console.log(response);
+
+                $('#emailInput').empty();
+                response.forEach(element =>{
+                    $('#emailInput').val(`${element['email']}`);
+                    // .append(
+                    //     `
+                    //     <option value="${element['id']}">${element['phone']}</option>
+                    //     `
+
+                        // );
+                });
+            }
+        });
+
+        }
+
+        $('#user_type_upload_file').hide();
+        $('#user_type_contacts').hide();
+        function handleOnChangeUserType(option)
+        {
+            if(option){
+                if(option == 'upload_file'){
+                    $('#user_type_upload_file').show();
+                    $('#user_type_contacts').hide();
+                }
+                if(option == 'contacts'){
+                    $('#user_type_contacts').show();
+                    $('#user_type_upload_file').hide();
+                }
+            }
+        }
+
+        $('#schedule_date_time').hide();
+        function handleOnChangeSchedule(option)
+        {
+            if(option){
+                if(option == 'mark_schedule'){
+                    $('#schedule_date_time').show();
+                } else {
+                    $('#schedule_date_time').hide();
+                }
+            }
+        }
+
+        $('#template_message').hide();
+        function handleOnChangeMessage(option)
+        {
+            if(option){
+                if(option == 'template_message'){
+                    $('#template_message').show();
+                } else {
+                    $('#template_message').hide();
+                }
+            }
+        }
+
+        function handleOnChangeTemplate(template)
+        {
+            if(template){
+                $.ajax({
+                    type: 'GET',
+                    url: '{{url('admin/users/template')}}/' +template,
+                    success: function(response){
+                        $('#custom_message').val(response.text);
+                    }
+                });
+            }        
+        }
+
+        $('#templateTable').DataTable();
+
+        function deleteTemplate(id)
+        {
+            if(confirm('Are you sure you want to delete?')){
+                window.location.href='{{url('admin/users/templates')}}/'+ id;
+            }
+        }
+
+    </script>
+</body>
 </html>
 
 

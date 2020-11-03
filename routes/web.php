@@ -62,6 +62,9 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
     Route::get('users/template/{id}', function($id){
         return App\Models\Template::find($id);
     })->name('import.template');
+    Route::get('users/templates', [App\Http\Controllers\TemplateController::class, 'index'])->name('import.templates');
+    Route::post('users/templates', [App\Http\Controllers\TemplateController::class, 'create'])->name('import.template.create');
+    Route::get('users/templates/{id}', [App\Http\Controllers\TemplateController::class, 'delete'])->name('import.template.delete');
 
 
 });

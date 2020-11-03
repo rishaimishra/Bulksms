@@ -9,6 +9,9 @@ class Template extends Model
 {
     use HasFactory;
 
+    const SMS = 'SMS';
+    const EMAIL = 'EMAIL';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +20,6 @@ class Template extends Model
     protected $fillable = [
         'title',
         'text',
-        'media'
+        'type'
     ];
 }
