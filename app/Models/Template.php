@@ -9,14 +9,16 @@ class Template extends Model
 {
     use HasFactory;
 
-    const SMS = 'SMS';
-    const EMAIL = 'EMAIL';
+    const TYPE = array(
+        'SMS' => 'SMS',
+        'EMAIL' => 'EMAIL'
+    );
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
-    */
+     */
     protected $fillable = [
         'title',
         'text',

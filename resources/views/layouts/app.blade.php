@@ -42,6 +42,7 @@
             height: auto;
             transform: scale(1) translate(-50%, -50%) !important;
             width: 100%;
+            z-index: 999;
         }
         .overlay-edit-modal{
             display: none;
@@ -140,18 +141,27 @@
     $(document).on('click', '#editButton' , function(){
         var editTableNode = $(this).parent('td').parent('tr');
         $.fn.appendAttr = function(attrName, suffix) {
-        this.attr(attrName, function(i, val) {
-            return val + suffix;
-        });
-        return this;
-    };
+            this.attr(attrName, function(i, val) {
+                return val + suffix;
+            });
+            return this;
+        };
         var editNameField = editTableNode.children()[0].innerHTML;
         var editEmailField = editTableNode.children()[1].innerHTML;
         var editEhoneField = editTableNode.children()[2].innerHTML;
+        var editTemplateText = editTableNode.children().find('#templateText').val();
+        var editTemplateId = editTableNode.children().find('#templateId').val();
         $('#editModal').find('#name').val(editNameField);
         $('#editModal').find('#email').val(editEmailField);
         $('#editModal').find('#phone').val(editEhoneField);
         $('#editModal form').appendAttr('action', 41);
+
+        $('#editTemplateModal').find('#editTitle').val(editEmailField);
+        $('#editTemplateModal').find('#editType').val(editEhoneField);
+        $('#editTemplateModal').find('#editText').val(editTemplateText);
+        $('#editTemplateForm').appendAttr('action', editTemplateId);
+
+        
 
         modalToggle();
         // console.log(editNameField);
@@ -159,6 +169,7 @@
     });
     function modalToggle() {
         $('#editModal').toggleClass('modal-show');
+        $('#editTemplateModal').toggleClass('modal-show');
         $('.overlay-edit-modal').toggleClass('overlay-show');
     };
 
@@ -292,7 +303,7 @@
                         $('#custom_message').val(response.text);
                     }
                 });
-            }        
+            }
         }
 
         $('#templateTable').DataTable();
@@ -301,6 +312,26 @@
         {
             if(confirm('Are you sure you want to delete?')){
                 window.location.href='{{url('admin/users/templates')}}/'+ id;
+            }
+        }
+
+        function toggleViewTemplateModal()
+        {
+            $('#viewTemplateModal').toggleClass('modal-show');
+        }
+
+        function openViewTemplateModal(template)
+        {
+            if(template){
+                toggleViewTemplateModal()
+                $.ajax({
+                    type: 'GET',
+                    url: '{{url('admin/users/template')}}/' +template,
+                    success: function(response){
+                        $('#viewTemplateModal').find('.modal-header').html(response.title);
+                        $('#viewTemplateModal').find('.modal-body').html(response.text);
+                    }
+                });
             }
         }
 

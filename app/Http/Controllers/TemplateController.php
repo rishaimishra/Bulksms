@@ -13,7 +13,7 @@ class TemplateController extends Controller
     public function index()
     {
         $templates = Template::all();
-        return view('admin.users.templates')->with(['templates' => $templates, 'types' => [Template::SMS, Template::EMAIL]]);
+        return view('admin.users.templates')->with(['templates' => $templates, 'types' => Template::TYPE]);
     }
 
     public function create(Request $request)
@@ -34,6 +34,25 @@ class TemplateController extends Controller
                 return back()->with('error', $ex->getMessage());
             }
         }        
+    }
+
+    public function updateTemplate(Request $request, int $id)
+    {
+        try {
+            if($template = Template::find($id)){
+                $template->title = $request->title;
+                $template->type = $request->editType;
+                $template->text = $request->text;
+                $template->save();
+
+                return back()->with('success', 'Template has been updated successfully.');
+            } else {
+                return back()->with('error', 'No Template found.');
+            }
+
+        } catch(Exception $ex) {
+            return back()->with('error', $ex->getMessage());
+        }   
     }
 
     public function delete($id)
