@@ -120,7 +120,7 @@ class SendController extends Controller
         $users = DB::table('users')
     			->where('guest','1')
                 ->orderBy('created_at','desc')
-                ->paginate(10);
+                ->get();
 
         return view('admin.users.sendsms')->with('users', $users);
     }

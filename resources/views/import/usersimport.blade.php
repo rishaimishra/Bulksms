@@ -140,8 +140,9 @@
                         @endforeach
 
                     </tbody>
+                    {{ $users->links() }}
                 </table>
-                {{ $users->links() }}
+
 
 
 
