@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = DB::table('users')
+            ->where('guest', '1')
+            ->count();
+        $staffs = DB::table('users')
+            ->where('guest', '0')
+            ->count();
+
+            $emails = DB::table('messages')
+            ->where('type', 'EMAIL')
+            ->count();
+
+            $sms = DB::table('messages')
+            ->where('type', 'SMS')
+            ->count();
+        // return view('home')->with(['users' => $users]);
+        return view('home', compact(['staffs', 'users','sms','emails']));
     }
 }

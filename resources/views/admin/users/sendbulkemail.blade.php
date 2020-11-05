@@ -2,7 +2,7 @@
 
 @section('content')
 @include('admin.users.sidebar')
-    <div class="container" style="margin-top:-480px">
+    <div class="container" style="margin-top:-280px">
 
         <div class="row justify-content-center">
 
@@ -79,7 +79,7 @@
                     </div>
 
                     <div id="template_message" class="form-group">
-                        <label class="control-label">Select Template</label>                        
+                        <label class="control-label">Select Template</label>
                         <select class="form-control" onChange="handleOnChangeTemplate(this.value)">
                             @foreach ($templates as $item)
                                 <option value="{{$item->id}}">{{ucfirst($item->title)}}</option>

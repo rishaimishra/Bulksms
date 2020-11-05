@@ -2,7 +2,7 @@
 
 @section('content')
 @include('admin.users.sidebar')
-<div class="container" style="margin-top:-480px">
+<div class="container" style="margin-top:-280px">
 
     <div class="row justify-content-center">
 
@@ -36,10 +36,10 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{route('admin.import.template.create')}}" method="POST"> 
-                                
+                                <form action="{{route('admin.import.template.create')}}" method="POST">
+
                                     @csrf
-                                    
+
                                     <div class="modal-body">
 
                                         <div class="form-group">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <table id="templateTable" class="display">
                         <thead>
                             <tr>
@@ -84,8 +84,8 @@
                             @for ($i = 0; $i < $templates->count(); $i++)
                                 <tr>
                                     <td>
-                                        {{ $i + 1 }} 
-                                        <input type="hidden" value="{{ $templates[$i]->id }}" name="templateId" id="templateId">    
+                                        {{ $i + 1 }}
+                                        <input type="hidden" value="{{ $templates[$i]->id }}" name="templateId" id="templateId">
                                     </td>
                                     <td>{{ $templates[$i]->title }}</td>
                                     <td>{{ $templates[$i]->type }}</td>
@@ -105,12 +105,12 @@
 
             </div>
 
-            
+
 
             {{-- Edit modal starts --}}
             <div class="overlay-edit-modal"></div>
             <div class="modal-content" id="editTemplateModal">
-                <form action="{{ route('admin.import.template.update',0) }}" method="POST" id="editTemplateForm"> 
+                <form action="{{ route('admin.import.template.update',0) }}" method="POST" id="editTemplateForm">
                     @csrf
                     {{method_field('PATCH')}}
                     <div class="modal-header">
@@ -126,7 +126,7 @@
                             <label for="editType">Type</label>
                             <select class="form-control" id="editType" name="editType">
                                 @foreach($types as $type)
-                                    <option value="{{ $type }}">{{ $type }}</option>    
+                                    <option value="{{ $type }}">{{ $type }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -151,10 +151,10 @@
                 </div>
             </div>
 
-            
 
 
-        
+
+
 
 
         </div>
