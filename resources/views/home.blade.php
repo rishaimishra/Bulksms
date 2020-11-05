@@ -54,21 +54,25 @@
       </div>
 
       <div class="row" style="margin-top:80px">
-        <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
-            <div class="card-header">Number of users</div>
-            <div class="card-body">
-              <h5 class="card-title">{{$users}}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
+      <a href="{{route('admin.import.show')}}">
+            <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
+                <div class="card-header">Number of users</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{$users}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </a>
 
-        <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
-            <div class="card-header">Number of staffs</div>
-            <div class="card-body">
-              <h5 class="card-title">{{$staffs}}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
+        <a href="{{route('admin.users.index')}}">
+            <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
+                <div class="card-header">Number of staffs</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{$staffs}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </a>
 
 
         <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
