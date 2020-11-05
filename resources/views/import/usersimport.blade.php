@@ -7,7 +7,7 @@
 
 
 
-<div class="container" style="margin-top:-460px">
+<div class="container" style="margin-top:-260px">
 
 
     <div class="row justify-content-center">
@@ -44,7 +44,7 @@
 
         <form action="{{route('admin.import.store')}}" method="POST" enctype="multipart/form-data">@csrf
             <div class="form-group">
-                <input type="file" name="fileimport" />
+                <input type="file" name="fileimport" required/>
                 <button type="submit" class="btn btn-primary">Import</button>
             </div>
         </form>
@@ -141,7 +141,7 @@
 
                     </tbody>
                 </table>
-
+                {{ $users->links() }}
 
 
 
