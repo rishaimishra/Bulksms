@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 31, 2020 at 03:18 AM
+-- Generation Time: Nov 02, 2020 at 03:10 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -33,6 +33,34 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('SMS','EMAIL') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'SMS',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `to`, `from`, `body`, `type`, `created_at`, `updated_at`) VALUES
+(1, 'wsofttechno@gmail.com', 'rishimishra7872@gmail.com', 'This is a test msg', 'EMAIL', '2020-11-01 09:46:57', '2020-11-01 09:46:57'),
+(2, 'srvinfo73@gmail.com', 'rishimishra7872@gmail.com', 'This is a test msg', 'EMAIL', '2020-11-01 09:46:58', '2020-11-01 09:46:58'),
+(3, '918447493224', '12058284240', 'tesat msg', 'SMS', '2020-11-01 11:28:44', '2020-11-01 11:28:44'),
+(4, '917063821662', '12058284240', 'tesat msg', 'SMS', '2020-11-01 11:28:47', '2020-11-01 11:28:47'),
+(5, 'pujitapriya@gmail.com', 'rishimishra7872@gmail.com', 'Covid-19 (HTML)', 'EMAIL', '2020-11-02 09:35:46', '2020-11-02 09:35:46'),
+(6, 'srvinfo73@gmail.com', 'rishimishra7872@gmail.com', 'Covid-19 (HTML)', 'EMAIL', '2020-11-02 09:35:51', '2020-11-02 09:35:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -52,7 +80,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2020_10_17_163645_create_roles_table', 1),
 (5, '2020_10_17_165340_create_role_user_table', 1),
-(6, '2020_10_18_085321_add_phone_field_to_users_table', 1);
+(6, '2020_10_18_085321_add_phone_field_to_users_table', 1),
+(7, '2020_10_31_091928_create_templates_table', 2),
+(8, '2020_11_01_103023_create_messages_table', 3);
 
 -- --------------------------------------------------------
 
@@ -115,6 +145,32 @@ INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `templates`
+--
+
+CREATE TABLE `templates` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `media` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `templates`
+--
+
+INSERT INTO `templates` (`id`, `title`, `text`, `media`, `created_at`, `updated_at`) VALUES
+(1, 'No Reply Email', 'No Reply Email', 'NO MMS', NULL, NULL),
+(2, 'Working During Covid-19', 'Working During Covid-19', 'NO MMS', NULL, NULL),
+(3, 'Now Hiring E-Mailer-12 (HTML)', 'Now Hiring E-Mailer-12 (HTML)', 'NO MMS', NULL, NULL),
+(4, 'Covid-19 (HTML)', 'Covid-19 (HTML)', 'NO MMS', NULL, NULL),
+(5, 'Happy Birthday E-mailer (HTML)', 'Happy Birthday E-mailer (HTML)', 'NO MMS', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -141,10 +197,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (3, 'anaya', 'anaya@vikku.com', NULL, '$2y$10$I/W4nStD2nETML62tHIMnur7NGW3OqJ.a4oRHD..s7NRjI7b88l7e', NULL, '2020-10-18 03:37:03', '2020-10-18 03:37:03', 7689876543, 0),
 (4, 'manish', 'maniahs@gmail.com', NULL, '$2y$10$xhg.RkCeICuCppJUcH//LOuDYb0JjFfuGgeby2LyPab98Wb.ktAn2', NULL, '2020-10-18 03:39:55', '2020-10-18 03:39:55', 6543786789, 0),
 (5, 'anisha kumar', 'ani@gmail.com', NULL, '$2y$10$E38ldeFe5Jouas/ilpXsUOqtr7g5eHZoHYHN6H59.Cn8nkqfxNIH2', NULL, '2020-10-21 01:54:30', '2020-10-21 01:54:30', 7876542345, 1),
-(7, 'avinash kumar', 'avi@gmail.com', NULL, '$2y$10$vtio9EkGHKeKAUvhmEVhluMT/RoQH8RDlw94AKf2rkbCORYLdDtx6', NULL, '2020-10-21 01:54:30', '2020-10-21 01:54:30', 9876546789, 1),
+(7, 'Anjali', 'wsofttechno@gmail.com', NULL, '$2y$10$vtio9EkGHKeKAUvhmEVhluMT/RoQH8RDlw94AKf2rkbCORYLdDtx6', NULL, '2020-10-21 01:54:30', '2020-10-21 01:54:30', 9876546789, 1),
 (8, 'RUPESH kumai', 'chotu@gmail.com', NULL, '$2y$10$NZyMZn5KRMwOvjHxssV1gOvdJs8/7230rykuaNAadtvzLi26K/MAq', NULL, '2020-10-21 01:54:31', '2020-10-21 01:54:31', 897987798, 1),
-(9, 'avi singh', 'rohit@gmail.com', NULL, '$2y$10$cNDDu8LVEDtqh745GuBceOarepPEJX1.AjkUK24E9ZGshTqwerRbq', NULL, '2020-10-21 02:03:03', '2020-10-21 02:03:03', 7063821662, 1),
-(40, 'ranuat akumar', 'rassd4521344143212rrdt@gmail.com', NULL, '$2y$10$BTochRk28nP7lAgrRB/aXeCO8WqGg1RtIdAY7G2YOJRlXxIuR/yWi', NULL, '2020-10-21 02:58:36', '2020-10-21 02:58:36', 70890977688, 1),
+(9, 'avi singh', 'rohit@gmail.com', NULL, '$2y$10$cNDDu8LVEDtqh745GuBceOarepPEJX1.AjkUK24E9ZGshTqwerRbq', NULL, '2020-10-21 02:03:03', '2020-10-21 02:03:03', 918447493224, 1),
+(40, 'ranuat akumar', 'pujitapriya@gmail.com', NULL, '$2y$10$BTochRk28nP7lAgrRB/aXeCO8WqGg1RtIdAY7G2YOJRlXxIuR/yWi', NULL, '2020-10-21 02:58:36', '2020-10-21 02:58:36', 917632866863, 1),
 (41, 'vikrant singh', 'srvinfo73@gmail.com', NULL, '$2y$10$rlfe.M5OUDhvbP1BwfO0x.VVIulCpNSbI2pT0rm4JjTkKAqxecNcu', NULL, '2020-10-21 03:39:38', '2020-10-22 11:49:47', 917063821662, 1);
 
 --
@@ -157,6 +213,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -183,6 +245,12 @@ ALTER TABLE `role_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `templates`
+--
+ALTER TABLE `templates`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -200,10 +268,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -216,6 +290,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `role_user`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `templates`
+--
+ALTER TABLE `templates`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
