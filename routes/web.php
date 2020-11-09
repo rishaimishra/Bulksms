@@ -22,7 +22,9 @@ Route::get('/', function () {
 
 
 
-Auth::routes();
+
+Auth::routes(['register' => false]);
+//Auth::routes();
 
 
 // Route::resource('/admin/users', App\Http\Controllers\Admin\UsersController::class)->except([
@@ -67,5 +69,6 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
     Route::patch('users/templates/update/{id}', [App\Http\Controllers\TemplateController::class, 'updateTemplate'])->name('import.template.update');
     Route::get('users/templates/{id}', [App\Http\Controllers\TemplateController::class, 'delete'])->name('import.template.delete');
 
+    Route::post('staff/create', [App\Http\Controllers\ContactController::class, 'storing'])->name('staff.store');
 
 });

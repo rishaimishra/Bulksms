@@ -40,19 +40,21 @@
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Account Type</label>
                       <select class="form-control" id="exampleFormControlSelect1" name="actype">
-
+                        <option value="0" disabled selected>Twilio</option>
 
                       </select>
                     </div>
 
 
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1">Twilio Number</label>
-                      <select class="form-control" id="exampleFormControlSelect1" name="twilionum">
-                        <option>1</option>
-                        <option>2</option>
+                        <label class="control-label">Number</label>
+                        <select class="form-control" id="account_number" name="account_number">
+                            <option value="0" disabled selected>Select Number</option>
 
-                      </select>
+                         @foreach ($num as $item)
+                        <option value="{{$item->id}}">{{ucfirst($item->name)}}</option>
+                         @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">

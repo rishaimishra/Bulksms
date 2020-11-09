@@ -39,7 +39,7 @@
    @include('admin.users.sidebar')
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" style="margin-top:-480px">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         {{-- <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
@@ -53,44 +53,53 @@
         </div> --}}
       </div>
 
-      <div class="row" style="margin-top:80px">
-      <a href="{{route('admin.import.show')}}">
-            <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
-                <div class="card-header">Number of users</div>
-                <div class="card-body">
-                  <h5 class="card-title">{{$users}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
+    <div class="row">
+      <div class="col-md-3 col-md-6 col-12">
+        <a href="{{route('admin.import.show')}}">
+          <div class="card text-white bg-primary mb-2">
+            <div class="card-header">Number of users</div>
+            <div class="card-body">
+              <h5 class="card-title">{{$users}}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
         </a>
-
+      </div>
+      <div class="col-md-3 col-md-6 col-12">
         <a href="{{route('admin.users.index')}}">
-            <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
-                <div class="card-header">Number of staffs</div>
-                <div class="card-body">
-                  <h5 class="card-title">{{$staffs}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
+          <div class="card text-white bg-primary mb-2" >
+            <div class="card-header">Number of staffs</div>
+            <div class="card-body">
+              <h5 class="card-title">{{$staffs}}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
         </a>
-
-
-        <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
+      </div>
+      <div class="col-md-3 col-md-6 col-12">
+        <a href="#">
+          <div class="card text-white bg-primary mb-2" >
             <div class="card-header">Number of email sent</div>
             <div class="card-body">
               <h5 class="card-title">{{$emails}}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
-          <div class="card text-white bg-primary mr-1" style="max-width: 18rem;">
+          
+        </a>
+      </div>
+      <div class="col-md-3 col-md-6 col-12">
+        <a href="#">
+          <div class="card text-white bg-primary mb-2" >
             <div class="card-header">Number of sms sent</div>
             <div class="card-body">
               <h5 class="card-title">{{$sms}}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
-
+        </a>
       </div>
+    </div>
     {{-- <a href="{{route('admin.import.send')}}" class="btn btn-primary">pressit</a> --}}
 
 

@@ -145,4 +145,38 @@ class ContactController extends Controller
         $request->session()->flash('msg','Record has been deleted Successfully');
         return redirect()->route('admin.import.show');
     }
+
+
+    // create new staff
+    public function storing(Request $r)
+    {
+
+
+        $validator = Validator::make($r->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'phone' => 'required',
+            'password'=>'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        } else {
+
+            $data = [
+                'name'  => $r->name,
+                'email' => $r->email,
+                'password'=>$r->password,
+                'phone' => $r->phone,
+                'created_at' => Carbon::parse($r->date),
+            ];
+            
+
+            $post = DB::table('users')->insertGetId($data);
+            if ($post == 1)
+                return  redirect()->back()->with(['success', 'Your message has been sent successfully!']);
+            else
+                return  redirect()->back()->with(['error' => 'Something Want Weong']);
+        }
+    }
 }

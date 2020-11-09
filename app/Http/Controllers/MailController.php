@@ -20,7 +20,7 @@ class MailController extends Controller
         if(!$request->custemail){
             dd("Please send email");
         }
-        
+
         $body = array(
             'bodyMessage' => $request->custom_message
         );
@@ -57,7 +57,7 @@ class MailController extends Controller
         try {
             $body = array('bodyMessage' => $data['body']);
             Mail::send('email', $body, function ($message) use ($data) {
-    
+
                 $message->from($data['from'], $data['from_name']);
                 $message->to($data['to'], $data['to_name']);
                 $message->priority(3);
@@ -73,7 +73,7 @@ class MailController extends Controller
                 }
                 if(!empty($data['subject'])){
                     $message->subject($data['subject']);
-                }                
+                }
                 if(!empty($data['attachment'])){
                     $file = $data['attachment'];
                     $message->attach($file->getRealPath(), [
@@ -97,7 +97,7 @@ class MailController extends Controller
                     ->orderBy('created_at','desc')
                     ->get();
 
-        $templates = DB::table('templates')->get();             
+        $templates = DB::table('templates')->get();
 
         return view('admin.users.sendbulkemail')->with(['users' => $users, 'templates' => $templates]);
     }
@@ -113,11 +113,13 @@ class MailController extends Controller
 
         $data = array();
         $data['type'] = Message::EMAIL;
-        $data['from'] = env('MAIL_FROM_ADDRESS', 'rishimishra7872@gmail.com');
-        $data['from_name'] = env('MAIL_FROM_NAME', 'Rishav kumar');
+        $data['from'] = env('MAIL_FROM_ADDRESS');
+        $data['from_name'] = env('MAIL_FROM_NAME');
         $data['body'] = $request->custom_message;
         $data['subject'] = $request->message_subject;
         $data['attachment'] = $request->file('message_attachment');
+
+       
 
         // If User selects from DB contatcs
         if($request->user_type_contacts){
@@ -128,11 +130,11 @@ class MailController extends Controller
                 $this->sendEmail($data);
                 Message::create($data);
             }
-        } 
-        
+        }
+
         // If User uploads a Excel file
         if($request->bulk_message_file) {
-            $user_emails = Excel::toArray(new ExcelImport, $request->file('bulk_message_file'));  
+            $user_emails = Excel::toArray(new ExcelImport, $request->file('bulk_message_file'));
             array_walk_recursive($user_emails, function ($value, $key) use (&$emails){
                 $emails[] = $value;
             }, $emails);

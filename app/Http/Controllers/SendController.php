@@ -26,10 +26,14 @@ class SendController extends Controller
        $token= config('services.twilio.token');
 
        $twilio = new Client($sid, $token);
+       $account_number = DB::table('accounts')
+       ->select('number')
+       ->where('id',$request->account_number)
+       ->first();
 
         $message = $twilio->messages
                   ->create('+'.(int)$request->custnumber, // to
-                           ["body" => $request->msg, "from" => "+12058284240"]
+                           ["body" => $request->msg, "from" => "$account_number->number"]
                   );
 
         return back()->with('success', 'Sms has been sent successfully.');
@@ -60,11 +64,17 @@ class SendController extends Controller
         if(!$request->user_type_contacts && !$request->bulk_message_file){
             dd("Please select user type");
         }
+        $account_number = DB::table('accounts')
+        ->select('number')
+        ->where('id',$request->account_number)
+        ->first();
+
+        //dd($account_number->number);
 
         $twilio = new Client($sid, $token);
 
         $data = array();
-        $data['from'] = $request->account_number;
+        $data['from'] = $account_number->number;
         $data['body'] = $request->custom_message;
         $data['attachment'] = $request->file('message_attachment');
 
@@ -112,8 +122,10 @@ class SendController extends Controller
                     ->get();
 
         $templates = DB::table('templates')->get();
+        $num = DB::table('accounts')
+                ->get();
 
-        return view('admin.users.sendbulksms')->with(['users' => $users, 'templates' => $templates]);
+        return view('admin.users.sendbulksms')->with(['users' => $users, 'templates' => $templates, 'num' => $num]);
     }
 
     public function index(){
@@ -122,8 +134,13 @@ class SendController extends Controller
                 ->orderBy('created_at','desc')
                 ->get();
 
-        return view('admin.users.sendsms')->with('users', $users);
+                $num = DB::table('accounts')
+                ->get();
+
+        return view('admin.users.sendsms')->with(['users' => $users, 'num' => $num]);
     }
+
+
 
     public function getnumber($id){
        echo json_encode(DB::table('users')->where('guest','1')->where('id',$id)->get());

@@ -69,7 +69,11 @@
                     <div class="form-group">
                         <label class="control-label">Number</label>
                         <select class="form-control" id="account_number" name="account_number">
-                            <option value="12058284240" selected>+12058284240</option>
+                            <option value="0" disabled selected>Select Number</option>
+
+                         @foreach ($num as $item)
+                        <option value="{{$item->id}}">{{ucfirst($item->name)}}</option>
+                         @endforeach
                         </select>
                     </div>
 

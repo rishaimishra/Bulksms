@@ -23,50 +23,90 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <style>
-        .modal-content{
-            opacity: 0;
-            visibility: hidden;
-            /*height: 0;*/
-            /*width: 0;*/
-                position: fixed;
-            top: 50%;
-            left: 50%;
-            transform:scale(.9) translate(-50%, -50%) !important;
-            transition: all .3s;
-            max-width: 400px;
-        }
-        .modal-show{
-            opacity: 1;
-            visibility: visible;
-            height: auto;
-            transform: scale(1) translate(-50%, -50%) !important;
-            width: 100%;
-            z-index: 999;
-        }
-        .overlay-edit-modal{
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgb(0 0 0 / 0.35);
-        }
-        .overlay-show	{
-            display: block;
-        }
+<style>
+.modal-content {
+    opacity: 0;
+    visibility: hidden;/*height: 0;*/
 
-        .show#addContact .modal-content{
-        opacity: 1;
-        visibility: visible;
-        }
+    /*width: 0;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: scale(.9) translate(-50%, -50%) !important;
+    transition: all .3s;
+    max-width: 400px;
+}
 
-        .show#addTemplate .modal-content{
-            opacity: 1;
-            visibility: visible;
-        }
-        </style>
+.modal-show {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    transform: scale(1) translate(-50%, -50%) !important;
+    width: 100%;
+    z-index: 999;
+}
+
+.overlay-edit-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 0.35);
+}
+
+.overlay-show {
+    display: block;
+}
+
+.show#addContact .modal-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.show#addTemplate .modal-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/*new css*/
+#sidebarMenu .list-group-item{
+    padding: 0;
+}
+#sidebarMenu .list-group-item.active a{
+    color: #fff !important;
+}
+#sidebarMenu .list-group-item a{
+    padding: 0.75rem 1.25rem;
+    display: block;
+}
+#sidebarMenu+div.container{
+    margin-top: 0 !important;
+}
+/*contact*/
+.import-111 span svg{
+height: 20px;
+width: 20px;
+}
+#datatable .btn-div {
+display: grid;
+}
+#datatable .btn-div button,
+#datatable .btn-div a{
+    /*padding: 2px 9px 2px;
+    height: auto;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 3px;
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px #cacaca;*/
+}
+select{
+    cursor: pointer;
+}
+/*new css*/
+</style>
 </head>
 <body>
     <div id="app">
@@ -127,7 +167,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 d-flex">
             @yield('content')
         </main>
     </div>
