@@ -65,6 +65,15 @@
     visibility: visible;
 }
 
+#viewTemplateModal {
+    max-width: 600px;
+    height: 400px;
+}
+
+#viewTemplateModal > .modal-body {
+    overflow:scroll;
+}
+
 .show#addTemplate .modal-content {
     opacity: 1;
     visibility: visible;
