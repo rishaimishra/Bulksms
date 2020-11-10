@@ -38,7 +38,7 @@
 
    @include('admin.users.sidebar')
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <main role="main" class="">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         {{-- <div class="btn-toolbar mb-2 mb-md-0">
@@ -54,7 +54,7 @@
       </div>
 
     <div class="row">
-      <div class="col-md-3 col-md-6 col-12">
+      <div class="col-lg-6 col-md-6 col-12">
         <a href="{{route('admin.import.show')}}">
           <div class="card text-white bg-primary mb-2">
             <div class="card-header">Number of users</div>
@@ -65,7 +65,7 @@
           </div>
         </a>
       </div>
-      <div class="col-md-3 col-md-6 col-12">
+      <div class="col-lg-6 col-md-6 col-12">
         <a href="{{route('admin.users.index')}}">
           <div class="card text-white bg-primary mb-2" >
             <div class="card-header">Number of staffs</div>
@@ -76,7 +76,7 @@
           </div>
         </a>
       </div>
-      <div class="col-md-3 col-md-6 col-12">
+      <div class="col-lg-6 col-md-6 col-12">
         <a href="#">
           <div class="card text-white bg-primary mb-2" >
             <div class="card-header">Number of email sent</div>
@@ -88,7 +88,7 @@
           
         </a>
       </div>
-      <div class="col-md-3 col-md-6 col-12">
+      <div class="col-lg-6 col-md-6 col-12">
         <a href="#">
           <div class="card text-white bg-primary mb-2" >
             <div class="card-header">Number of sms sent</div>

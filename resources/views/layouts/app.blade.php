@@ -105,6 +105,56 @@ display: grid;
 select{
     cursor: pointer;
 }
+/*09-11-2020*/
+.my-content-div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    padding: 0 30px;
+}
+.my-content-div #sidebarMenu{
+    width: 15%;
+}
+.my-content-div #sidebarMenu+main,
+.my-content-div .my-content1{
+    width: 60%;
+    margin: auto;
+}
+/*media queries*/
+@media only screen and (max-width:1030px) {
+.my-content-div{
+    padding: 0 20px;
+}
+.my-content-div #sidebarMenu{
+    width: 20%;
+}
+.my-content-div #sidebarMenu+main,
+.my-content-div .my-content1{
+    width: 60%;
+}
+}
+@media only screen and (max-width:770px) {
+.my-content-div{
+    padding: 0 10px;
+}
+.my-content-div #sidebarMenu{
+    width: 20%;
+}
+.my-content-div #sidebarMenu+main,
+.my-content-div .my-content1{
+    width: 75%;
+    margin: auto;
+}
+}
+@media only screen and (max-width:500px) {
+}
+
+@media only screen and (max-width:380px) {
+}
+
+@media only screen and (max-width:330px) {
+}
 /*new css*/
 </style>
 </head>
@@ -167,7 +217,7 @@ select{
             </div>
         </nav>
 
-        <main class="py-4 d-flex">
+        <main class="py-4 my-content-div">
             @yield('content')
         </main>
     </div>

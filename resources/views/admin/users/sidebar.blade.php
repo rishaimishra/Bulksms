@@ -1,4 +1,4 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light">
+<nav id="sidebarMenu" class="d-md-block bg-light">
   <div class="">
     <ul class="list-group">
       <li class="list-group-item active">
@@ -11,7 +11,7 @@
         @can('manage-users')
         <a class="" href="{{route('admin.import.show')}}">
           <span data-feather="file-text"></span>
-          Users management
+          User Management
         </a>
         @endcan
       </li>
@@ -93,7 +93,7 @@
         @can('manage-users')
         <a class="" href="{{route('admin.users.index')}}">
           <span data-feather="file-text"></span>
-          staff management
+          Staff Management
         </a>
         @endcan
       </li>

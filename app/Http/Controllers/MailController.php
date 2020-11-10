@@ -30,8 +30,8 @@ class MailController extends Controller
         $data['to'] = $request->custemail;
         $data['to_name'] = ucfirst($user->name);
         $data['type'] = Message::EMAIL;
-        $data['from'] = env('MAIL_FROM_ADDRESS', 'rishimishra7872@gmail.com');
-        $data['from_name'] = env('MAIL_FROM_NAME', 'Rishav kumar');
+        $data['from'] = env('MAIL_FROM_ADDRESS', 'info@desmanager.com');
+        $data['from_name'] = env('MAIL_FROM_NAME', 'Anjali kumari');
         $data['subject'] = $request->message_subject;
         $data['body'] = $request->custom_message;
         $data['attachment'] = $request->file('message_attachment');
@@ -56,7 +56,7 @@ class MailController extends Controller
     {
         try {
             $body = array('bodyMessage' => $data['body']);
-            Mail::send('email', $body, function ($message) use ($data) {
+            $mail = Mail::send('email', $body, function ($message) use ($data) {
 
                 $message->from($data['from'], $data['from_name']);
                 $message->to($data['to'], $data['to_name']);
@@ -113,13 +113,13 @@ class MailController extends Controller
 
         $data = array();
         $data['type'] = Message::EMAIL;
-        $data['from'] = env('MAIL_FROM_ADDRESS');
-        $data['from_name'] = env('MAIL_FROM_NAME');
+        $data['from'] = env('MAIL_FROM_ADDRESS','info@desmanager.com');
+        $data['from_name'] = env('MAIL_FROM_NAME','Anjali kumari');
         $data['body'] = $request->custom_message;
         $data['subject'] = $request->message_subject;
         $data['attachment'] = $request->file('message_attachment');
 
-       
+
 
         // If User selects from DB contatcs
         if($request->user_type_contacts){

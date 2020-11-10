@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 @include('admin.users.sidebar')
-<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+<div class="my-content1">
+<!-- <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4"> -->
   <div class="">
     @if (session('success'))
     <div class="alert alert-success" role="alert">
@@ -59,7 +60,7 @@
                 aria-describedby="emailHelp" placeholder="Enter Name">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
+                <label for="exampleInputEmail1">Email address</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp" placeholder="Enter email">
               </div>
@@ -105,8 +106,8 @@
                   <button id="editButton" data-id="{{$item->id}}" class="btn-sm mb-1 btn btn-primary">Edit</button>
                   @endcan
                   @can('delete-users')
-                  <a
-                    class="btn-sm btn btn-danger"
+                  <a 
+                    class="btn-sm btn btn-danger" 
                     href="#"
                     onclick="deleteUser({{$item->id}})">Delete
                   </a>
@@ -117,7 +118,7 @@
             </tbody>
             {{ $users->links() }}
           </table>
-
+          
         </div>
       </div>
     </div>

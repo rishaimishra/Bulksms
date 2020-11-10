@@ -2,11 +2,11 @@
 
 @section('content')
 @include('admin.users.sidebar')
-<div class="container" style="margin-top:-280px">
+<div class="my-content1">
 
-    <div class="row justify-content-center">
 
-        <div class="col-md-10">
+        <div class="">
+        <div class="">
 
             @if (session('success'))
                 <div class="alert alert-primary" role="alert">
