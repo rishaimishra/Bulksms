@@ -146,6 +146,17 @@ class ContactController extends Controller
         return redirect()->route('admin.import.show');
     }
 
+    public function unblocking($id, Request $request)
+    {
+
+        $row = DB::table('users')
+            ->where("id", $id)
+            ->update(array('status' => 1));
+        // return response()->json(["message" => "Initiative Remove"]);
+        $request->session()->flash('msg','Record has been Updated Successfully');
+        return redirect()->route('admin.import.blocknumber');
+    }
+
 
     // create new staff
     public function storing(Request $r)
@@ -170,7 +181,7 @@ class ContactController extends Controller
                 'phone' => $r->phone,
                 'created_at' => Carbon::parse($r->date),
             ];
-            
+
 
             $post = DB::table('users')->insertGetId($data);
             if ($post == 1)

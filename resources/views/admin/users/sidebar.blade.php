@@ -39,6 +39,13 @@
           Send Bulk email
         </a>
       </li>
+
+      <li class="list-group-item">
+        <a class="" href="{{route('admin.allmails')}}">
+          <span data-feather="shopping-cart"></span>
+          Email Outbox
+        </a>
+      </li>
       <li class="list-group-item">
         <a class="" href="{{route('admin.import.templates')}}">
           <span data-feather="shopping-cart"></span>
@@ -99,7 +106,7 @@
       </li>
 
 
-      
+
     </ul>
   </div>
 </nav>

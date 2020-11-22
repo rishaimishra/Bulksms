@@ -280,6 +280,12 @@ select{
                 }
             };
 
+            function UnblockUser(id){
+                if(confirm('Are you sure you want to delete?')){
+                    window.location.href='{{url('admin/users/unblock')}}/'+id;
+                }
+            };
+
 
 
     //    $('#contactNam1').on('change',function(){
