@@ -50,6 +50,7 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
     Route::get('/users/send/sms', [App\Http\Controllers\SendController::class, 'index'])->name('import.form');
     Route::get('/users/send/sms/bulk', [App\Http\Controllers\SendController::class, 'viewBulkSMS'])->name('import.form.bulksms');
     Route::get('/users/getnumber/{id}', [App\Http\Controllers\SendController::class, 'getNumber'])->name('import.number');
+    Route::get('/users/blocked', [App\Http\Controllers\SendController::class, 'blockNumber'])->name('import.blocknumber');
 
 
     Route::get('/users/send/email', [App\Http\Controllers\MailController::class, 'index'])->name('import.form.mail');

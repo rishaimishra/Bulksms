@@ -35,6 +35,7 @@ class SendController extends Controller
                   ->create('+'.(int)$request->custnumber, // to
                            ["body" => $request->msg, "from" => "$account_number->number"]
                   );
+                  
 
         return back()->with('success', 'Sms has been sent successfully.');
     }
@@ -118,6 +119,7 @@ class SendController extends Controller
     {
         $users = DB::table('users')
                     ->where('guest','1')
+                    ->where('status','1')
                     ->orderBy('created_at','desc')
                     ->get();
 
@@ -130,7 +132,8 @@ class SendController extends Controller
 
     public function index(){
         $users = DB::table('users')
-    			->where('guest','1')
+                ->where('guest','1')
+                ->where('status','1')
                 ->orderBy('created_at','desc')
                 ->get();
 
@@ -138,6 +141,19 @@ class SendController extends Controller
                 ->get();
 
         return view('admin.users.sendsms')->with(['users' => $users, 'num' => $num]);
+    }
+
+    public function blockNumber(){
+        $users = DB::table('users')
+                ->where('guest','1')
+                ->where('status','0')
+                ->orderBy('created_at','desc')
+                ->get();
+
+                $num = DB::table('accounts')
+                ->get();
+
+        return view('admin.users.blocklist')->with(['users' => $users, 'num' => $num]);
     }
 
 

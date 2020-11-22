@@ -45,13 +45,13 @@
           Template Messages
         </a>
       </li>
-      {{-- <li class="list-group-item">
-        <a class="" href="#">
+      <li class="list-group-item">
+      <a class="" href="{{route('admin.import.blocknumber')}}">
           <span data-feather="users"></span>
-          Customers
+          BlackList
         </a>
       </li>
-      <li class="list-group-item">
+      {{-- <li class="list-group-item">
         <a class="" href="#">
           <span data-feather="bar-chart-2"></span>
           Reports
@@ -97,6 +97,9 @@
         </a>
         @endcan
       </li>
+
+
+      
     </ul>
   </div>
 </nav>
