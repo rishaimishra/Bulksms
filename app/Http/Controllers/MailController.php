@@ -153,4 +153,10 @@ class MailController extends Controller
     public function getEmail($id){
         echo json_encode(DB::table('users')->where('guest','1')->where('id',$id)->get());
      }
+
+     public function sentMailList(){
+        $mails = Message::where('type', '=', 'EMAIL')->get();
+        return view('admin.users.sentmails')->with(['mails' => $mails]);
+
+    }
 }
