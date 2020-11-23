@@ -29,6 +29,13 @@
       </li>
 
       <li class="list-group-item">
+        <a class="" href="{{route('admin.import.sms.all')}}">
+          <span data-feather="shopping-cart"></span>
+          SMS Inbox
+        </a>
+      </li>
+
+      <li class="list-group-item">
         <a class="" href="{{route('admin.allsms')}}">
           <span data-feather="shopping-cart"></span>
           SMS Outbox

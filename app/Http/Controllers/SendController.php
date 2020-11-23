@@ -143,6 +143,31 @@ class SendController extends Controller
         return view('admin.users.sendsms')->with(['users' => $users, 'num' => $num]);
     }
 
+    public function getAllSMS(Request $request)
+    {
+        $filter = array();
+        $limit = $request->limit ? $request->limit : 20;
+        if($request->dateSent){
+            $filter['dateSent'] = new \DateTime($request->dateSent);
+        }
+        if($request->from){
+            $filter['from'] = $request->from;
+        }
+        if($request->to){
+            $filter['to'] = $request->to;
+        }
+        
+        $users = DB::table('users')->where('guest','1')->where('status','1')->orderBy('created_at','desc')->get();
+        $sid = config('services.twilio.sid');
+        $token = config('services.twilio.token');
+
+        $twilio = new Client($sid, $token);
+        
+        $messages = $twilio->messages->read($filter, $limit);
+        
+        return view('admin.users.smsinbox')->with(['users' => $users, 'messages' => $messages]);
+    }
+
     public function blockNumber(){
         $users = DB::table('users')
                 ->where('guest','1')
