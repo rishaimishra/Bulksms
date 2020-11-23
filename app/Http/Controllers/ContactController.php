@@ -64,9 +64,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $r, $id)
+    public function updating(Request $r)
     {
-      //  dd($id);
+
 
 
         $validator = Validator::make($r->all(), [
@@ -80,13 +80,14 @@ class ContactController extends Controller
                  return Redirect::back()->withErrors($validator);
 
              }else{
+                 $id = $r->userid;
                  if($r->email != ""){
                       $data = [
 
                      'name' => $r->name,
-
-                     'phone' => $r->phone,
-                     'guest'=>$r->guest
+                    'phone' => $r->phone,
+                     'email' => $r->email,
+                     'status'=>$r->status
 
                       ];
                       try {
@@ -103,7 +104,7 @@ class ContactController extends Controller
 
                         'name' => $r->name,
                         'phone' => $r->phone,
-                        'guest'=>$r->guest
+                        'status'=>$r->status
 
                          ];
 

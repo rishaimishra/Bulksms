@@ -27,6 +27,14 @@
           Send Bulk SMS
         </a>
       </li>
+
+      <li class="list-group-item">
+        <a class="" href="{{route('admin.allsms')}}">
+          <span data-feather="shopping-cart"></span>
+          SMS Outbox
+        </a>
+      </li>
+
       <li class="list-group-item">
         <a class="" href="{{route('admin.import.form.mail')}}">
           <span data-feather="shopping-cart"></span>

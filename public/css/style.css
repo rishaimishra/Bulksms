@@ -1,0 +1,19 @@
+
+#viewTemplateModal.modal-content.modal-show {
+max-width: 60vw;
+height: 70vh;
+}
+
+/*media queries*/
+@media only screen and (max-width:1445px) {
+
+}
+
+@media only screen and (max-width:500px) {
+}
+
+@media only screen and (max-width:380px) {
+}
+
+@media only screen and (max-width:330px) {
+}

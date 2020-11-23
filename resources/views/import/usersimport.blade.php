@@ -106,8 +106,8 @@
                   <button id="editButton" data-id="{{$item->id}}" class="btn-sm mb-1 btn btn-primary">Edit</button>
                   @endcan
                   @can('delete-users')
-                  <a 
-                    class="btn-sm btn btn-danger" 
+                  <a
+                    class="btn-sm btn btn-danger"
                     href="#"
                     onclick="deleteUser({{$item->id}})">Delete
                   </a>
@@ -118,7 +118,7 @@
             </tbody>
             {{ $users->links() }}
           </table>
-          
+
         </div>
       </div>
     </div>
@@ -127,8 +127,8 @@
 {{-- Edit modal starts --}}
 <div class="overlay-edit-modal"></div>
 <div class="modal-content" id="editModal">
-  <form action="{{route('admin.contacts.update', 0)}}" method="POST"> @csrf
-    {{method_field('PATCH')}}
+  <form action="{{route('admin.contacts.updating')}}" method="POST"> @csrf
+
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Edit Modal title</h5>
       <button type="button" class="close" onClick="modalToggle()">&times;     </button>
@@ -136,6 +136,7 @@
     <div class="modal-body">
       <div class="form-group">
         <label for="editName">Name</label>
+        <input type="hidden" name="userid" id="editUserId" />
         <input type="text" name="name" id="name" class="form-control" id="editName" placeholder="Enter Name">
       </div>
       <div class="form-group">
@@ -147,6 +148,15 @@
         <input type="number" name="phone" id="phone" class="form-control" id="editPhone" placeholder="Enter Phone">
         <input type="hidden" name="guest" value="1" class="form-control" id="editHidden" placeholder="Enter Phone">
       </div>
+
+      <div class="form-group">
+        <label for="editPhone">User Status</label>
+        <select class="form-control" name="status">
+            <option disabled selected>--Select--</option>
+            <option value="0">Block</option>
+            <option value="1">Unblock</option>
+        </select>
+    </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" onClick="modalToggle()">Close</button>

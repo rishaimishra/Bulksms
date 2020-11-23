@@ -41,8 +41,10 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
     Route::post('/users/import', [App\Http\Controllers\ImportController::class, 'store'])->name('import.store');
 
     Route::resource('/contacts', App\Http\Controllers\ContactController::class)->except([
-        'create', 'index','show','edit'
+        'create', 'index','show','edit','update'
     ]);
+    Route::post('/contacts/updates', [App\Http\Controllers\ContactController::class, 'updating'])->name('contacts.updating');
+
 
     Route::get('/users/delete/{id}', [App\Http\Controllers\ContactController::class, 'destroying'])->name('import.delete');
     Route::get('/users/unblock/{id}', [App\Http\Controllers\ContactController::class, 'unblocking'])->name('import.update');
@@ -52,6 +54,7 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
     Route::get('/users/send/sms/bulk', [App\Http\Controllers\SendController::class, 'viewBulkSMS'])->name('import.form.bulksms');
     Route::get('/users/getnumber/{id}', [App\Http\Controllers\SendController::class, 'getNumber'])->name('import.number');
     Route::get('/users/blocked', [App\Http\Controllers\SendController::class, 'blockNumber'])->name('import.blocknumber');
+    Route::get('/users/allsentsms', [App\Http\Controllers\SendController::class, 'sentSmsList'])->name('allsms');
 
 
     Route::get('/users/send/email', [App\Http\Controllers\MailController::class, 'index'])->name('import.form.mail');

@@ -35,7 +35,7 @@ class SendController extends Controller
                   ->create('+'.(int)$request->custnumber, // to
                            ["body" => $request->msg, "from" => "$account_number->number"]
                   );
-                  
+
 
         return back()->with('success', 'Sms has been sent successfully.');
     }
@@ -160,6 +160,12 @@ class SendController extends Controller
 
     public function getnumber($id){
        echo json_encode(DB::table('users')->where('guest','1')->where('id',$id)->get());
+    }
+
+    public function sentSmsList(){
+        $sms = Message::where('type', '=', 'SMS')->get();
+        return view('admin.users.sentsmslist')->with(['sms' => $sms]);
+
     }
 
 }

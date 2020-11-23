@@ -143,6 +143,8 @@
             </div>
             {{-- edit modal end --}}
 
+           
+
             <div class="modal-content" id="viewTemplateModal">
                 <div class="modal-header">HEADEr</div>
                 <div class="modal-body">asdsa</div>

@@ -22,6 +22,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 <style>
 .modal-content {
@@ -250,10 +251,12 @@ select{
         var editEhoneField = editTableNode.children()[2].innerHTML;
         var editTemplateText = editTableNode.children().find('#templateText').val();
         var editTemplateId = editTableNode.children().find('#templateId').val();
+        var editTemplateId2 = editTableNode.children().find('#editButton').attr('data-id');
         $('#editModal').find('#name').val(editNameField);
         $('#editModal').find('#email').val(editEmailField);
         $('#editModal').find('#phone').val(editEhoneField);
-        $('#editModal form').appendAttr('action', 41);
+        //$('#editModal form').appendAttr('action', editTemplateId2);
+        $('#editUserId').val(editTemplateId2);
 
         $('#editTemplateModal').find('#editTitle').val(editEmailField);
         $('#editTemplateModal').find('#editType').val(editEhoneField);
@@ -281,7 +284,7 @@ select{
             };
 
             function UnblockUser(id){
-                if(confirm('Are you sure you want to delete?')){
+                if(confirm('Are you sure you want to Unblock User?')){
                     window.location.href='{{url('admin/users/unblock')}}/'+id;
                 }
             };
