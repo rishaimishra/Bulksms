@@ -74,7 +74,7 @@
 
                 <div class="card-body">
 
-                    <table class="table">
+                    <table id="sendsmsTable" class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

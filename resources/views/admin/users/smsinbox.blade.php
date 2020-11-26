@@ -23,13 +23,13 @@
 
             <div class="card-header">Templates</div>
 
-            <div class="card-body">                
-                
+            <div class="card-body">
+
                 <table id="templateTable" class="display">
                     <thead>
                         <tr>
-                            <th>S. Id</th>
-                            <th>Acc S ID</th>
+                            {{-- <th>S. Id</th> --}}
+                            {{-- <th>Acc S ID</th> --}}
                             <th>To</th>
                             <th>From</th>
                             <th>Body</th>
@@ -38,8 +38,8 @@
                     <tbody>
                         @foreach ($messages as $message)
                             <tr>
-                                <td>{{ $message->sid }}</td>
-                                <td>{{ $message->accountSid }}</td>
+                                {{-- <td>{{ $message->sid }}</td> --}}
+                                {{-- <td>{{ $message->accountSid }}</td> --}}
                                 <td>{{ $message->to }}</td>
                                 <td>{{ $message->from }}</td>
                                 <td>{{ htmlspecialchars($message->body) }}</td>
@@ -47,7 +47,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
 
         </div>

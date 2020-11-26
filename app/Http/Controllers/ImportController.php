@@ -12,7 +12,7 @@ class ImportController extends Controller
     public function show(){
         $users = User::where('guest', 1)
         ->orderBy('id', 'desc')
-        ->paginate(4);
+        ->get();
 
         return view('import.usersimport')->with('users', $users);
     }

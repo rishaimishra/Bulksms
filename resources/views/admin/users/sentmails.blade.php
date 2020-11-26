@@ -74,7 +74,7 @@
 
                 <div class="card-body">
 
-                    <table class="table">
+                    <table id="sentMailist" class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -94,7 +94,7 @@
                                 <td>{{$item->from}}</td>
                                 <td>{{$item->body}}</td>
                                 <td>{{$item->created_at}}</td>
-                               
+
                             </tr>
                             @endforeach
 
