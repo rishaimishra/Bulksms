@@ -415,6 +415,9 @@ select{
         }
 
         $('#templateTable').DataTable();
+        $('#sendsmsTable').DataTable();
+        $('.userimportTable').DataTable();
+        $('#sentMailist').DataTable();
 
         function deleteTemplate(id)
         {

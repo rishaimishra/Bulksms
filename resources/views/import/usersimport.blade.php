@@ -84,7 +84,7 @@
       <div class="card">
         <div class="card-header">Users</div>
         <div class="card-body">
-          <table id="datatable" class="table table-striped mt-3">
+          <table id="datatable" class="table table-striped mt-3 userimportTable">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Name</th>
@@ -116,7 +116,7 @@
               </tr>
               @endforeach
             </tbody>
-            {{ $users->links() }}
+            {{-- {{ $users->links() }} --}}
           </table>
 
         </div>
