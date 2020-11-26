@@ -60,6 +60,9 @@ class MailController extends Controller
 
                 $message->from($data['from'], $data['from_name']);
                 $message->to($data['to'], $data['to_name']);
+                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $message->getSwiftMessage()->getHeaders()->addTextHeader($headers);
                 $message->priority(3);
 
                 if(!empty($data['cc'])){
