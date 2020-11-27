@@ -1,1 +1,1 @@
-{{ $bodyMessage }}
+{!! $bodyMessage !!}

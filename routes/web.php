@@ -78,4 +78,9 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
 
     Route::post('staff/create', [App\Http\Controllers\ContactController::class, 'storing'])->name('staff.store');
 
+    Route::get('/autoresponder', [App\Http\Controllers\AutoResponderController::class, 'index'])->name('autoresponder.keywords');
+    Route::post('/autoresponder/create', [App\Http\Controllers\AutoResponderController::class, 'create'])->name('autoresponder.keywords.create');
+    Route::patch('/autoresponder/update/{id}', [App\Http\Controllers\AutoResponderController::class, 'update'])->name('autoresponder.keywords.update');
+    Route::get('/autoresponder/delete/{id}', [App\Http\Controllers\AutoResponderController::class, 'delete'])->name('autoresponder.keywords.delete');
+
 });

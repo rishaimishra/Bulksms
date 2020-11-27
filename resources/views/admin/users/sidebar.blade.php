@@ -68,6 +68,12 @@
         </a>
       </li>
       <li class="list-group-item">
+        <a class="" href="{{route('admin.autoresponder.keywords')}}">
+          <span data-feather="shopping-cart"></span>
+          Autoresponder Keywords
+        </a>
+      </li>
+      <li class="list-group-item">
       <a class="" href="{{route('admin.import.blocknumber')}}">
           <span data-feather="users"></span>
           BlackList

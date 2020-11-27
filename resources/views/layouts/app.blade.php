@@ -255,15 +255,15 @@ select{
         $('#editModal').find('#name').val(editNameField);
         $('#editModal').find('#email').val(editEmailField);
         $('#editModal').find('#phone').val(editEhoneField);
+        console.log(editTableNode.children());
         //$('#editModal form').appendAttr('action', editTemplateId2);
         $('#editUserId').val(editTemplateId2);
 
         $('#editTemplateModal').find('#editTitle').val(editEmailField);
         $('#editTemplateModal').find('#editType').val(editEhoneField);
+        $('#editTemplateModal').find('#editKeywordMessage').val(editEhoneField);
         $('#editTemplateModal').find('#editText').val(editTemplateText);
         $('#editTemplateForm').appendAttr('action', editTemplateId);
-
-
 
         modalToggle();
         // console.log(editNameField);
@@ -423,6 +423,13 @@ select{
         {
             if(confirm('Are you sure you want to delete?')){
                 window.location.href='{{url('admin/users/templates')}}/'+ id;
+            }
+        }
+
+        function deleteAutoResponderKeyword(id)
+        {
+            if(confirm('Are you sure you want to delete?')){
+                window.location.href='{{url('admin/autoresponder/delete')}}/'+ id;
             }
         }
 
