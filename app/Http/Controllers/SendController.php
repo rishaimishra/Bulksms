@@ -10,7 +10,9 @@ use Twilio\Rest\Client;
 use DB;
 use App\Models\User;
 use App\Models\Message;
+use App\Models\AutoResponder;
 use App\Imports\ExcelImport;
+use Twilio\TwiML\MessagingResponse;
 
 // Update the path below to your autoload.php,
 // see https://getcomposer.org/doc/01-basic-usage.md
@@ -191,6 +193,18 @@ class SendController extends Controller
         $sms = Message::where('type', '=', 'SMS')->get();
         return view('admin.users.sentsmslist')->with(['sms' => $sms]);
 
+    }
+
+    public function reply()
+    {
+        if($message = AutoResponder::get()->first()){
+            $message = $message->message;
+        } else {
+            $message = "The Robots are coming! Head for the hills!";
+        }
+        $response = new MessagingResponse();
+        $response->message($message);
+        return $response;
     }
 
 }
