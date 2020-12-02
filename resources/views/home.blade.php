@@ -6,7 +6,7 @@
 
 
 {{-- @if (session('status'))
-<div class="alert alert-success" role="alert">
+<div class="alert alert" role="alert">
     {{ session('status') }}
 </div>
 @endif --}}
@@ -18,6 +18,7 @@
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
+        
         text-anchor: middle;
         -webkit-user-select: none;
         -moz-user-select: none;
