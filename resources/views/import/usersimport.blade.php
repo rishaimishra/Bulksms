@@ -35,7 +35,14 @@
           <input type="file" name="fileimport" required/>
           <button type="submit" class="btn btn-primary">Import</button>
         </div>
+
+
+
       </form>
+      <label for="bulk_message_file">
+        <a href="{{ asset('uploads/users_insert.xlsx') }}" download>Download Sample File</a>
+    </label>
+
       <button type="button" class="btn btn-primary ml-4 mb-3" data-toggle="modal" data-target="#addContact">
       Add Contact
       </button>
@@ -48,7 +55,7 @@
         <div class="modal-content">
           <form action="{{route('admin.contacts.store')}}" method="POST"> @csrf
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add Contact</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
               </button>
@@ -60,7 +67,7 @@
                 aria-describedby="emailHelp" placeholder="Enter Name">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="exampleInputEmail1">Email</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp" placeholder="Enter email">
               </div>
