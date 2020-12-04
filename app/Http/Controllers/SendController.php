@@ -21,23 +21,27 @@ use Twilio\TwiML\MessagingResponse;
 class SendController extends Controller
 {
 
-    public function sendsms( Request $request ) {
+    public function sendsms(Request $request)
+    {
+        $sid = config('services.twilio.sid');
+        $token = config('services.twilio.token');
 
-       // dd('+'.(int)$request->custnumber);
-       $sid= config('services.twilio.sid');
-       $token= config('services.twilio.token');
+        $twilio = new Client($sid, $token);
+        $account_number = DB::table('accounts')
+                            ->select('number')
+                            ->where('id',$request->account_number)
+                            ->first();
 
-       $twilio = new Client($sid, $token);
-       $account_number = DB::table('accounts')
-       ->select('number')
-       ->where('id',$request->account_number)
-       ->first();
+        $params = array(
+            "body" => $request->msg, 
+            "from" => "$account_number->number"
+        );
 
-        $message = $twilio->messages
-                  ->create('+'.(int)$request->custnumber, // to
-                           ["body" => $request->msg, "from" => "$account_number->number"]
-                  );
+        if($file = $request->file('message_attachment')){
+            $params['mediaUrl'] = $file->getRealPath();
+        }
 
+        $message = $twilio->messages->create('+' . (int) $request->custnumber, $params);
 
         return back()->with('success', 'Sms has been sent successfully.');
     }
@@ -45,12 +49,18 @@ class SendController extends Controller
     public function sendMessage($twilio, $data)
     {
         try {
-            return $twilio->messages
-                    ->create('+'.(int) $data['to'], array(
-                            "body" => $data['body'],
-                            "from" => '+'.(int) $data['from']
-                        )
-                    );
+
+            $params = array(
+                "body" => $data['body'],
+                "from" => '+'.(int) $data['from']
+            );
+
+            if(!empty($data['attachment'])){
+                $params['mediaUrl'] = $data['attachment']->getRealPath();
+            }
+
+            return $twilio->messages->create('+'.(int) $data['to'], $params);
+
         } catch(Exception $ex) {
 
             dd($ex->getMessage());

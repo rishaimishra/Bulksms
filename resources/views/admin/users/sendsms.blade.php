@@ -15,7 +15,7 @@
 
 
 
-        <form action="{{route('admin.import.send')}}" method="POST">@csrf
+        <form action="{{route('admin.import.send')}}" method="POST" enctype="multipart/form-data">@csrf
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select Contact</label>
                         <select class="form-control" id="contactName" name="custname" onChange="onSelectChange(this)">
@@ -55,6 +55,11 @@
                         <option value="{{$item->id}}">{{ucfirst($item->name)}}</option>
                          @endforeach
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Select an image</label>
+                        <input class="form-control" type="file" id="message_attachment" name="message_attachment" />
                     </div>
 
                     <div class="form-group">
