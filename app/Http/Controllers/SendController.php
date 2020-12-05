@@ -13,6 +13,7 @@ use App\Models\Message;
 use App\Models\AutoResponder;
 use App\Imports\ExcelImport;
 use Twilio\TwiML\MessagingResponse;
+use Illuminate\Support\Facades\Storage;
 
 // Update the path below to your autoload.php,
 // see https://getcomposer.org/doc/01-basic-usage.md
@@ -32,16 +33,19 @@ class SendController extends Controller
                             ->where('id',$request->account_number)
                             ->first();
 
+        $to = '1' . $request->custnumber;
+        $from = '1' . $account_number->number;
         $params = array(
             "body" => $request->msg, 
-            "from" => "$account_number->number"
+            "from" => '+' . (int) $from
         );
 
         if($file = $request->file('message_attachment')){
-            $params['mediaUrl'] = $file->getRealPath();
+            $url = $this->uploadFile($file);
+            $params['mediaUrl'] = url($url);            
         }
 
-        $message = $twilio->messages->create('+' . (int) $request->custnumber, $params);
+        $message = $twilio->messages->create('+' . (int) $to, $params);
 
         return back()->with('success', 'Sms has been sent successfully.');
     }
@@ -49,17 +53,20 @@ class SendController extends Controller
     public function sendMessage($twilio, $data)
     {
         try {
-
+            
+            $to = '1' . $data['to'];
+            $from = '1' . $data['from'];
             $params = array(
                 "body" => $data['body'],
-                "from" => '+'.(int) $data['from']
+                "from" => '+'.(int) $from
             );
 
             if(!empty($data['attachment'])){
-                $params['mediaUrl'] = $data['attachment']->getRealPath();
+                $url = $this->uploadFile($file);
+                $params['mediaUrl'] = url($url);
             }
 
-            return $twilio->messages->create('+'.(int) $data['to'], $params);
+            return $twilio->messages->create('+'.(int) $to, $params);
 
         } catch(Exception $ex) {
 
@@ -125,6 +132,24 @@ class SendController extends Controller
         }
 
         return back()->with('success', "SMS's has been sent successfully.");
+    }
+
+    public function uploadFile($file)
+    {
+        try {
+            if(!$file){
+                throw new \Exception("Empty File Object");
+            }
+
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('public', $filename);
+            $url = Storage::url($filename);
+
+            return $url;
+
+        } catch(\Exception $ex) {
+            dd($ex->getMessage());
+        }
     }
 
     public function viewBulkSMS()
