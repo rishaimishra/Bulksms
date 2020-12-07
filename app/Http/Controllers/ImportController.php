@@ -9,12 +9,18 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
 {
-    public function show(){
-        $users = User::where('guest', 1)
-        ->orderBy('name', 'asc')
-        ->get();
+    public function show(Request $request){
 
-        return view('import.usersimport')->with('users', $users);
+        if($request->has('q')){
+            $q=$request->q;
+            //dd($q);
+            $users=User::where('name','like','%'.$q.'%')->orderBy('id','desc')->get();
+            //dd($users);
+		}else{
+            
+        $users = User::where('guest', 1)->orderBy('id', 'desc')->get();
+       }
+        return view('import.usersimport')->with(['users'=>$users]);
     }
 
     public function store(Request $request){

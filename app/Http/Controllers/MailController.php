@@ -157,8 +157,16 @@ class MailController extends Controller
         echo json_encode(DB::table('users')->where('guest','1')->where('id',$id)->get());
      }
 
-     public function sentMailList(){
+     public function sentMailList(Request $request){
+
+        if($request->has('q')){
+            $q=$request->q;
+            //dd($q);
+            $mails=Message::where('to','like','%'.$q.'%')->orderBy('id','desc')->get();
+            //dd($users);
+		}else{
         $mails = Message::where('type', '=', 'EMAIL')->get();
+        }
         return view('admin.users.sentmails')->with(['mails' => $mails]);
 
     }

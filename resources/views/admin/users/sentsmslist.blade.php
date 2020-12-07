@@ -70,11 +70,11 @@
             <div class="card">
 
 
-                <div class="card-header">Users</div>
+                <div class="card-header">Sms OutBox</div>
 
                 <div class="card-body">
 
-                    <table id="sendsmsTable" class="table">
+                    <table id="" class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

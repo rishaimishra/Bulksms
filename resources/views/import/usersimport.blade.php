@@ -89,9 +89,23 @@
     </div>
     <div class="import-111">
       <div class="card">
-        <div class="card-header">Users</div>
+        <div class="card-header">Contacts</div>
         <div class="card-body">
-          <table id="datatable" class="table table-striped mt-3 userimportTable">
+          <div class="col-md-4 ml-auto">
+            
+              <div class="card-body">
+                <form method="get" action="{{url('admin/users/import')}}">
+                  <div class="input-group">
+                    <input type="text" name="q" class="form-control" />
+                    <div class="input-group-append">
+                      <input class="btn btn-dark" type="submit" id="button-addon2" value="Search" >
+                    </div>
+                  </div>
+                </form>
+              </div>
+           
+          </div>  
+          <table  class="table">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Name</th>

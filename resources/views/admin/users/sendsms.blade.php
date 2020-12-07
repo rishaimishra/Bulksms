@@ -31,8 +31,6 @@
                         <label for="exampleFormControlSelect1">Number</label>
                         <input type="text" class="form-control" id="numberInput" name="custnumber" />
                         {{-- <select class="form-control" id="numberInput" name="custnumber">
-
-
                         </select> --}}
                       </div>
 

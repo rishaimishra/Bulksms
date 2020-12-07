@@ -21,11 +21,26 @@
 
         <div class="card">
 
-            <div class="card-header">Templates</div>
+            <div class="card-header">Sms Inbox</div>
 
             <div class="card-body">
+            <div class="col-md-4">
 
-                <table id="templateTable" class="display">
+              <div class="card-body">
+                <form  action="{{route('admin.import.sms.all')}}">
+
+                <!--<div class="input-group">-->
+                <!--  <input type="text" name="q" class="form-control" />-->
+                <!--  <div class="input-group-append">-->
+                <!--    <input class="btn btn-dark" type="submit" id="button-addon2" value="Search" >-->
+                <!--  </div>-->
+                <!--</div>-->
+               </form>
+              </div>
+
+             </div>
+
+                <table  class="table">
                     <thead>
                         <tr>
                             {{-- <th>S. Id</th> --}}

@@ -34,15 +34,17 @@ class SendController extends Controller
                             ->first();
 
         $to = '1' . $request->custnumber;
-        $from = '1' . $account_number->number;
+        $from = $account_number->number;
+        
+
         $params = array(
-            "body" => $request->msg, 
-            "from" => '+' . (int) $from
+            "body" => $request->msg,
+            "from" => $from
         );
 
         if($file = $request->file('message_attachment')){
             $url = $this->uploadFile($file);
-            $params['mediaUrl'] = url($url);            
+            $params['mediaUrl'] = url($url);
         }
 
         $message = $twilio->messages->create('+' . (int) $to, $params);
@@ -53,12 +55,12 @@ class SendController extends Controller
     public function sendMessage($twilio, $data)
     {
         try {
-            
+
             $to = '1' . $data['to'];
-            $from = '1' . $data['from'];
+            $from = $data['from'];
             $params = array(
                 "body" => $data['body'],
-                "from" => '+'.(int) $from
+                "from" => $from
             );
 
             if(!empty($data['attachment'])){
@@ -193,15 +195,15 @@ class SendController extends Controller
         if($request->to){
             $filter['to'] = $request->to;
         }
-        
+
         $users = DB::table('users')->where('guest','1')->where('status','1')->orderBy('created_at','desc')->get();
         $sid = config('services.twilio.sid');
         $token = config('services.twilio.token');
 
         $twilio = new Client($sid, $token);
-        
+
         $messages = $twilio->messages->read($filter, $limit);
-        
+
         return view('admin.users.smsinbox')->with(['users' => $users, 'messages' => $messages]);
     }
 
@@ -243,7 +245,3 @@ class SendController extends Controller
     }
 
 }
-
-
-
-

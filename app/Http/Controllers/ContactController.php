@@ -178,7 +178,7 @@ class ContactController extends Controller
             $data = [
                 'name'  => $r->name,
                 'email' => $r->email,
-                'password'=>$r->password,
+                'password'=>Hash::make($r->password),
                 'phone' => $r->phone,
                 'created_at' => Carbon::parse($r->date),
             ];

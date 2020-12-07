@@ -17,7 +17,7 @@
           <form action="{{route('admin.import.mail')}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
-                  <label for="exampleFormControlSelect1">Select Contact</label>
+                  <label for="exampleFormControlSelect1">Send Email</label>
                   <select class="form-control" id="contactName" name="custname" onChange="onSelectChangeEmail(this)">
                     <option value="0" disabled selected>Select User</option>
 

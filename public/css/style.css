@@ -6,6 +6,12 @@ height: 70vh;
 #templateTable_wrapper{
     overflow-x: auto;
 }
+
+.allsentmail th,
+.allsentmail td {
+        font-size: 12px;
+    }
+
 /*media queries*/
 @media only screen and (max-width:1445px) {
 

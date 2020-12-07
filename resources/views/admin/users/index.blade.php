@@ -70,10 +70,24 @@
             <div class="card">
 
 
-                <div class="card-header">Users</div>
+                <div class="card-header">Staffs</div>
 
                 <div class="card-body">
+                <div class="col-md-4 ml-auto">
 
+            <div class="card-body">
+              <form  action="{{url('admin/users')}}">
+
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" />
+                <div class="input-group-append">
+                  <input class="btn btn-dark" type="submit" id="button-addon2" value="Search" >
+                </div>
+              </div>
+             </form>
+            </div>
+
+           </div>
                     <table class="table">
                         <thead>
                             <tr>

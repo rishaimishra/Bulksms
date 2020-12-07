@@ -26,6 +26,16 @@
 
                 <div class="card-body">
                     <button type="button" data-toggle="modal" data-target="#addTemplate" class="btn btn-primary my-3">Add New Template</button>
+                    <form  action="{{route('admin.import.templates')}}" class="btn btn- ml-auto">
+
+                        <div class="input-group">
+                          <input type="text" name="q" class="form-control" />
+                          <div class="input-group-append">
+                            <input class="btn btn-dark" type="submit" id="button-addon2" value="Search" >
+                          </div>
+                        </div>
+                       </form>
+
                     <!-- Modal -->
                     <div class="modal fade" id="addTemplate" aria-labelledby="addTemplateLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -69,8 +79,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
 
-                    <table id="templateTable" class="display">
+            <div class="card-body">
+
+            </div>
+
+           </div>
+                    <table  class="table">
                         <thead>
                             <tr>
                                 <th>S.No.</th>
@@ -93,10 +109,12 @@
                                         <a href="javascript:void(0);" onClick="openViewTemplateModal({{$templates[$i]->id}})">View Template</a>
                                         <input type="hidden" value="{{ $templates[$i]->text }}" name="templateText" id="templateText">
                                     </td>
+                                    @can('edit-users')
                                     <td>
                                         <a href="#" id="editButton" data-id="{{ $templates[$i]->id }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
                                         <a href="#" onClick="deleteTemplate({{ $templates[$i]->id }})" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endfor
                         </tbody>
@@ -143,7 +161,7 @@
             </div>
             {{-- edit modal end --}}
 
-           
+
 
             <div class="modal-content" id="viewTemplateModal">
                 <div class="modal-header">HEADEr</div>

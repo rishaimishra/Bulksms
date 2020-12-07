@@ -10,9 +10,16 @@ use Exception;
 
 class TemplateController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('q')){
+            $q=$request->q;
+            //dd($q);
+            $templates=Template::where('title','like','%'.$q.'%')->orderBy('id','desc')->get();
+            //dd($users);
+		}else{
         $templates = Template::all();
+        }
         return view('admin.users.templates')->with(['templates' => $templates, 'types' => Template::TYPE]);
     }
 

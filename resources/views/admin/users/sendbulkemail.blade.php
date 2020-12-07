@@ -18,7 +18,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <label class="control-label">User Type</label>
+                        <label class="control-label">Send Bulk Email</label>
                         <select class="form-control" onChange="handleOnChangeUserType(this.value)">
                             <option value="0" selected>Select</option>
                             <option value="upload_file" >Upload File</option>

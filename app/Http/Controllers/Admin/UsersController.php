@@ -20,11 +20,18 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('q')){
+            $q=$request->q;
+            //dd($q);
+            $users=User::where('name','like','%'.$q.'%')->orderBy('id','desc')->get();
+            //dd($users);
+		}else{
         $users = User::where('guest', 0)
         ->orderBy('name', 'desc')
         ->get();
+        }
         return view('admin.users.index')->with('users', $users);
     }
 

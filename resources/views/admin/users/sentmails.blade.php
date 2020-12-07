@@ -2,6 +2,8 @@
 
 @section('content')
 @include('admin.users.sidebar')
+
+
 <div class="my-content1">
     @if (session('success'))
     <div class="alert alert-success" role="alert">
@@ -22,7 +24,7 @@
         </button> --}}
 
         <!-- Modal -->
-        <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        {{-- <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -63,18 +65,33 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="">
             <div class="card">
 
 
-                <div class="card-header">Users</div>
+                <div class="card-header">Email Outbox</div>
 
                 <div class="card-body">
+                <div class="col-md-4 ml-auto">
 
-                    <table id="sentMailist" class="table">
+            <div class="card-body">
+              <form  action="{{route('admin.allmails')}}">
+
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" />
+                <div class="input-group-append">
+                  <input class="btn btn-dark" type="submit" id="button-addon2" value="Search" >
+                </div>
+              </div>
+             </form>
+            </div>
+
+           </div>
+
+                    <table  class="table allsentmail">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
