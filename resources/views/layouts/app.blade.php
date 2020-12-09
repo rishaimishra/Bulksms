@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>DES SMS MANAGER</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -174,7 +174,7 @@ select{
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                <img src="{{asset('logo.png')}}" width="100px" /> 
+                <img src="{{asset('logo.png')}}" width="150px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -186,12 +186,17 @@ select{
 
                     </ul>
 
+
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+
+
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <!--<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>-->
                             </li>
 
                             {{-- @if (Route::has('register'))
@@ -226,6 +231,8 @@ select{
                 </div>
             </div>
         </nav>
+
+<h2 class="text-center mt-5" style="color:#054fa9;font-weight:bold;">DES SMS MANAGER</h2>
 
         <main class="py-4 my-content-div">
             @yield('content')
