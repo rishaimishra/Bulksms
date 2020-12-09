@@ -232,7 +232,6 @@ select{
             </div>
         </nav>
 
-<h2 class="text-center mt-5" style="color:#054fa9;font-weight:bold;">DES SMS MANAGER</h2>
 
         <main class="py-4 my-content-div">
             @yield('content')

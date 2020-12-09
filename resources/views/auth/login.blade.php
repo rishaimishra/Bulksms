@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-7 col-12">
+            <h2 class="text-center m-4" style="color:#054fa9;font-weight:bold;">DES SMS MANAGER</h2>
+
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -41,7 +43,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                              
+
                             </div>
                         </div>
 
