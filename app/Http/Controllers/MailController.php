@@ -43,7 +43,7 @@ class MailController extends Controller
 
     public function index(){
         $users = DB::table('users')
-    			->where('guest','1')
+                ->where('guest','1')
                 ->orderBy('created_at','desc')
                 ->get();
 
@@ -108,7 +108,7 @@ class MailController extends Controller
     public function sendBulkMail(Request $request)
     {
         $success = false;
-        $emails = array();
+         $emails = array();
 
         if(!$request->user_type_contacts && !$request->bulk_message_file){
             dd("Please select user type");
@@ -138,12 +138,14 @@ class MailController extends Controller
         // If User uploads a Excel file
         if($request->bulk_message_file) {
             $user_emails = Excel::toArray(new ExcelImport, $request->file('bulk_message_file'));
+
             array_walk_recursive($user_emails, function ($value, $key) use (&$emails){
                 $emails[] = $value;
             }, $emails);
-            $emails = array_unique($emails);
+            $emails = array_filter(array_unique($emails));
+
             foreach($emails as $email){
-                $data['to'] = $email;
+                $data['to'] = trim($email);
                 $data['to_name'] = 'John Doe';
                 $this->sendEmail($data);
                 Message::create($data);
@@ -164,7 +166,7 @@ class MailController extends Controller
             //dd($q);
             $mails=Message::where('to','like','%'.$q.'%')->orderBy('id','desc')->get();
             //dd($users);
-		}else{
+        }else{
         $mails = Message::where('type', '=', 'EMAIL')->get();
         }
         return view('admin.users.sentmails')->with(['mails' => $mails]);

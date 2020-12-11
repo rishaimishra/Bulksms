@@ -35,7 +35,7 @@ class SendController extends Controller
 
         $to = '1' . $request->custnumber;
         $from = $account_number->number;
-        
+
 
         $params = array(
             "body" => $request->msg,
@@ -125,7 +125,12 @@ class SendController extends Controller
             array_walk_recursive($phones, function ($value, $key) use (&$numbers){
                 $numbers[] = $value;
             }, $numbers);
+             $numbers = preg_replace("/\s+/", '_', $numbers); // Replaces all spaces with hyphens.
+            $numbers=preg_replace('/[^A-Za-z0-9\-]/', '', $numbers); // Removes special chars.
+            $numbers= str_replace("-","",$numbers);
             $numbers = array_unique($numbers);
+
+
             foreach($numbers as $number){
                 $data['to'] = $number;
                 $message = $this->sendMessage($twilio, $data);
